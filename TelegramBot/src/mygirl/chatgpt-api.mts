@@ -7,7 +7,7 @@ import QuickLRU from 'quick-lru'
 import _ from 'lodash'
 
 dotenv.config()
-
+const APIKEY = process.env.API_KEY as string
 const API_BASE_URL = process.env.GPT_SERVER as string
 const REDIS_URL =  process.env.REDIS_SERVER as string
 
@@ -25,7 +25,7 @@ export class ChatGPTAPIWrapper {
     let messageStore = new Keyv({ store: kvStore, namespace: 'MyGirlGPT-chatHistory' })
   
     this.api = new ChatGPTAPI({
-      apiKey: 'sk-test',
+      apiKey: APIKEY,
       apiBaseUrl: API_BASE_URL,
       systemMessage: '',
       messageStore: messageStore,
